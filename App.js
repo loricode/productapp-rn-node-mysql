@@ -1,9 +1,7 @@
-import axios from 'axios';
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import  httpAxios from 'axios';
-
+import axios from 'axios';
 
 const baseUrl = 'http://localhost:4000/'; 
 
@@ -17,7 +15,6 @@ class App extends Component {
       name:'',
       price:''
     };
-
   }
 
   componentDidMount(){
@@ -26,7 +23,7 @@ class App extends Component {
  
   async getProducts() {
     try{
-      const response = await httpAxios.get(baseUrl);
+      const response = await axios.get(baseUrl);
       const { data } = response;  
       this.setState({ list:data });
     }catch(error){
@@ -37,7 +34,7 @@ class App extends Component {
   async addProduct() {
     try{
       const { name, price } = this.state;
-      const response = await httpAxios.post(baseUrl, {name, price });
+      const response = await axios.post(baseUrl, {name, price });
       const { data } = response;  
       console.log(data);
       this.getProducts();
@@ -87,7 +84,6 @@ class App extends Component {
       </View>
     );
   }
-
 }//fin clase App
 
 const styles = StyleSheet.create({
